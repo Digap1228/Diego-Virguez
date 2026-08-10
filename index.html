@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación de Servicios - Dataservicios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #003a70;
+            --secondary-color: #00aeef;
+            --accent-yealink: #005aa0;
+            --accent-viewsonic: #e6192e;
+            --accent-green: #107c41;
+            --bg-light: #f4f6f8;
+            --text-dark: #1a2332;
+            --text-muted: #5a6577;
+            --white: #ffffff;
+            --border-light: #e8edf2;
+            --shadow-sm: 0 4px 16px rgba(0, 58, 112, 0.06);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.07);
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 18px;
+            --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.65;
+            font-size: 1rem;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ----- TYPOGRAPHY ----- */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-family);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--text-dark);
+        }
+
+        p {
+            font-family: var(--font-family);
+            margin-bottom: 1rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        .lead {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 1.125rem;
+        }
+
+        .section-intro {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        /* ----- HEADER ----- */
+        header {
+            position: relative;
+            padding: 5rem 1.25rem 4.5rem;
+            text-align: center;
+            overflow: hidden;
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .header-video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            object-fit: cover;
+        }
+
+        .header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.88), rgba(0, 174, 239, 0.72));
+            z-index: 1;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 10%, transparent 10.5%);
+            background-size: 24px 24px;
+            opacity: 0.3;
+            z-index: 2;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(6px);
+            padding: 0.4rem 1.125rem;
+            border-radius: 999px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+        }
+
+        header h1 {
+            margin-bottom: 1rem;
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            max-width: 100%;
+            overflow-wrap: break-word;
+        }
+
+        header p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            max-width: 820px;
+            width: 100%;
+            margin: 0 auto;
+            font-weight: 300;
+            opacity: 0.95;
+            line-height: 1.55;
+            color: var(--white);
+        }
+
+        .partnership-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 0 auto 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .partnership-logos img {
+            max-height: 680px;
+            max-width: 100%; /* <-- Corrección clave aquí */
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+        }
+
+        /* ----- LAYOUT ----- */
+        .container {
+            max-width: 1180px;
+            margin: -2.5rem auto 2.5rem;
+            padding: 0 1.25rem;
+            position: relative;
+            z-index: 4;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 1.75rem;
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.09);
+        }
+
+        .card.yealink { border-top-color: var(--accent-yealink); }
+        .card.viewsonic { border-top-color: var(--accent-viewsonic); }
+        .card.green { border-top-color: var(--accent-green); }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: clamp(1.5rem, 3vw, 1.875rem);
+            font-weight: 700;
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.875rem;
+            color: var(--text-dark);
+        }
+
+        h3:first-child {
+            margin-top: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            border-radius: 999px;
+            color: var(--white);
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.04em;
+        }
+
+        /* ----- GRIDS ----- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+            align-items: start;
+        }
+
+        .product-grid.reverse .media-column {
+            order: -1;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .details-grid.balanced-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .details-grid.balanced-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .detail-item {
+            background: #fafbfc;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 1.375rem;
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            height: 100%;
+        }
+
+        .detail-item:hover {
+            background: #f4f8fc;
+            border-color: #c8dff0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.625rem;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            border-left: 3px solid var(--secondary-color);
+            padding-left: 0.625rem;
+        }
+
+        .detail-item p,
+        .detail-item ul {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .brand-card {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.375rem;
+            min-height: 100px;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 8px 20px rgba(0, 174, 239, 0.14);
+        }
+
+        .brand-card span {
+            font-size: 1.125rem;
+        }
+
+        .brand-card small {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        /* ----- MEDIA ----- */
+        .media-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1.125rem;
+        }
+
+        .media-figure {
+            margin: 0;
+        }
+
+        .media-figure img,
+        .media-figure video {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            object-fit: cover;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            display: block;
+            background: var(--white);
+        }
+
+        .media-figure.contain img {
+            object-fit: contain;
+            max-height: 280px;
+            padding: 0.5rem;
+        }
+
+        .media-figure.hero img {
+            max-height: 420px;
+        }
+
+        .img-caption {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.5rem;
+            font-style: italic;
+            line-height: 1.45;
+        }
+
+        .section-banner-img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .section-banner-img.contain {
+            object-fit: contain;
+            max-height: 260px;
+            padding: 0.75rem;
+            background: #fafbfc;
+        }
+
+        /* ----- LISTS ----- */
+        ul.specs-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.25rem;
+        }
+
+        ul.specs-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.75rem;
+            position: relative;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.55;
+        }
+
+        ul.specs-list li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        ul.nested-list {
+            list-style: disc;
+            padding-left: 1.375rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        ul.nested-list li {
+            margin-bottom: 0.375rem;
+        }
+
+        /* ----- INTERACTIVE HOTSPOTS ----- */
+        .interactive-container {
+            position: relative;
+            width: 100%;
+            background: #fafbfc;
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px dashed #cdd5df;
+        }
+
+        .interactive-container p {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-bottom: 0.875rem;
+            font-weight: 600;
+        }
+
+        .interactive-container img {
+            box-shadow: none;
+            border-radius: 0;
+            border: none;
+        }
+
+        .hotspot-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .hotspot {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 90, 160, 0.92);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 8px rgba(0, 90, 160, 0.22);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+        }
+
+        .hotspot:hover {
+            background: var(--accent-yealink);
+            transform: translate(-50%, -50%) scale(1.15);
+            box-shadow: 0 0 0 12px rgba(0, 90, 160, 0.35);
+        }
+
+        .hotspot::after {
+            content: attr(data-info);
+            position: absolute;
+            bottom: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            color: var(--white);
+            padding: 0.625rem 0.875rem;
+            border-radius: 8px;
+            font-size: 0.8125rem;
+            white-space: normal;
+            width: 220px;
+            line-height: 1.4;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.28);
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .hotspot::before {
+            content: '';
+            position: absolute;
+            bottom: 37px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #1a1a1a;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .hotspot:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .hotspot:hover::before {
+            opacity: 1;
+        }
+
+        /* ----- SECTION 9: BALANCED LAYOUT ----- */
+        #espacios-videocolaboracion .section-9-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2.25rem;
+        }
+
+        #espacios-videocolaboracion .content-column h3 {
+            margin-top: 0;
+        }
+
+        #espacios-videocolaboracion .content-column .section-intro {
+            margin-bottom: 1rem;
+        }
+
+        #espacios-videocolaboracion .section-9-featured-media {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #espacios-videocolaboracion .section-9-featured-media .media-figure video {
+            max-height: 450px;
+            width: 100%;
+            object-fit: cover;
+            background: #fafbfc;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        #espacios-videocolaboracion .section-9-secondary-media {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        #espacios-videocolaboracion .section-9-explore {
+            background: #fafbfc;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px dashed #cdd5df;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #espacios-videocolaboracion .section-9-explore > p {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        #espacios-videocolaboracion .section-9-explore .hotspot-wrapper img {
+            max-height: 350px;
+            width: 100%;
+            margin: 0 auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        #espacios-videocolaboracion .section-9-coverage {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #espacios-videocolaboracion .section-9-coverage img {
+            height: 100%;
+            max-height: 350px;
+            width: 100%;
+            object-fit: cover;
+            background: #fafbfc;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        /* ----- SECTION 11: AUDIO INTEGRADO LAYOUT ----- */
+        #audio-integrado .audio-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2.25rem;
+        }
+
+        #audio-integrado .audio-media-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        #audio-integrado .audio-media-grid .media-figure {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #audio-integrado .audio-media-grid .media-figure video,
+        #audio-integrado .audio-media-grid .media-figure img {
+            height: 100%;
+            max-height: 400px;
+            width: 100%;
+            object-fit: cover;
+            flex-grow: 1;
+        }
+
+
+        /* ----- USAGE & EXCLUSIONS ----- */
+        .usage-section {
+            background: #eef7fb;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.375rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-top: 1.5rem;
+        }
+
+        .usage-section h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .usage-section p {
+            font-size: 0.9375rem;
+            color: #444;
+        }
+
+        .exclusions-box {
+            background: #fdfaf3;
+            border: 1px solid #f6e0b5;
+            padding: 1.375rem;
+            border-radius: var(--radius-sm);
+            margin-top: 1.5rem;
+        }
+
+        .exclusions-box h3 {
+            color: #b58100;
+            margin-top: 0;
+        }
+
+        /* ----- TABLE ----- */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 1.25rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            min-width: 680px;
+            font-size: 0.9375rem;
+        }
+
+        .pricing-table th {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.875rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .pricing-table td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-dark);
+            vertical-align: middle;
+        }
+
+        .pricing-table tbody tr:hover {
+            background-color: #f4f8fc;
+        }
+
+        .pricing-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ----- ARCHITECTURE BANNER ----- */
+        .architecture-banner {
+            background: linear-gradient(145deg, #1a2a3a 0%, #243447 100%);
+            color: var(--white);
+            text-align: center;
+            padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem);
+            border-radius: var(--radius-lg);
+            margin-bottom: 1.75rem;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+            border-top: none;
+        }
+
+        .architecture-banner h2 {
+            color: var(--white);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding-bottom: 0.875rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .architecture-banner p {
+            font-size: 1.0625rem;
+            max-width: 720px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.92;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .flowchart {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            background: rgba(0, 0, 0, 0.28);
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--radius-sm);
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            max-width: 100%;
+            word-wrap: break-word;
+            line-height: 1.85;
+            text-align: left;
+        }
+
+        /* ----- CATALOG PDF CARDS ----- */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .catalog-item {
+            display: flex;
+            align-items: center;
+            gap: 1.125rem;
+            cursor: pointer;
+            padding: 1.25rem;
+            background: #fafbfc;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            height: 100%;
+        }
+
+        .catalog-item:hover {
+            background: #f4f8fc;
+            border-color: #c8dff0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .catalog-badge {
+            flex-shrink: 0;
+            padding: 1rem 0.875rem;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+
+        .catalog-badge.secondary { background: var(--secondary-color); }
+        .catalog-badge.primary { background: var(--primary-color); }
+
+        .catalog-item h4 {
+            margin: 0 0 0.25rem;
+            border: none;
+            padding: 0;
+            font-size: 1.0625rem;
+            color: var(--primary-color);
+        }
+
+        .catalog-item p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* ----- PLATFORM ACCENTS ----- */
+        .accent-ms { border-left-color: #0078d4 !important; }
+        .accent-zoom { border-left-color: #2d8cff !important; }
+        .accent-byom { border-left-color: #34a853 !important; }
+
+        /* ----- ANIMATIONS ----- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ----- SIDEBAR ----- */
+        .sidebar-toggle {
+            position: fixed;
+            top: 1.5rem;
+            left: 0;
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.75rem 1rem 0.75rem 0.875rem;
+            border: 0;
+            border-radius: 0 10px 10px 0;
+            background: var(--primary-color);
+            color: var(--white);
+            font-family: var(--font-family);
+            font-size: 0.875rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+            transition: background-color 0.25s ease;
+        }
+
+        .sidebar-toggle:hover,
+        .sidebar-toggle:focus-visible {
+            background: #002d57;
+        }
+
+        .sidebar-toggle:focus-visible,
+        .sidebar-close:focus-visible,
+        .sidebar-nav a:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 3px;
+        }
+
+        .sidebar-toggle-icon,
+        .sidebar-toggle-icon::before,
+        .sidebar-toggle-icon::after {
+            display: block;
+            width: 20px;
+            height: 2px;
+            border-radius: 2px;
+            background: currentColor;
+        }
+
+        .sidebar-toggle-icon {
+            position: relative;
+        }
+
+        .sidebar-toggle-icon::before,
+        .sidebar-toggle-icon::after {
+            content: '';
+            position: absolute;
+            left: 0;
+        }
+
+        .sidebar-toggle-icon::before { top: -6px; }
+        .sidebar-toggle-icon::after { top: 6px; }
+
+        .sidebar-navigation {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1003;
+            width: min(340px, 88vw);
+            padding: 1.75rem 1.375rem;
+            overflow-y: auto;
+            background: var(--white);
+            border-right: 4px solid var(--secondary-color);
+            box-shadow: 12px 0 35px rgba(0, 0, 0, 0.2);
+            transform: translateX(-105%);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-navigation.is-open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-bottom: 1.125rem;
+            margin-bottom: 1.125rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .sidebar-title {
+            color: var(--primary-color);
+            font-size: 1.125rem;
+            font-weight: 800;
+        }
+
+        .sidebar-close {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid #dce3e8;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--primary-color);
+            font-family: var(--font-family);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .sidebar-close:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li + li {
+            margin-top: 0.25rem;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.625rem 0.75rem;
+            border-left: 3px solid transparent;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.35;
+            text-decoration: none;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.is-active {
+            background: #eef7fb;
+            border-left-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .sidebar-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 1001;
+            background: rgba(16, 31, 44, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .sidebar-backdrop.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.sidebar-open {
+            overflow: hidden;
+        }
+
+        section[id] {
+            scroll-margin-top: 1.25rem;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 900px) {
+            .product-grid,
+            .product-grid.reverse .media-column {
+                grid-template-columns: 1fr;
+                order: unset;
+            }
+
+            .product-grid.reverse .media-column {
+                order: 0;
+            }
+
+            .details-grid.balanced-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hotspot::after {
+                width: 160px;
+            }
+
+            /* Fixes para nuevas grids responsivas */
+            #espacios-videocolaboracion .section-9-secondary-media,
+            #audio-integrado .audio-media-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #espacios-videocolaboracion .section-9-featured-media .media-figure video,
+            #audio-integrado .audio-media-grid .media-figure video,
+            #audio-integrado .audio-media-grid .media-figure img {
+                max-height: 300px;
+            }
+            
+            #espacios-videocolaboracion .section-9-explore .hotspot-wrapper img {
+                max-height: 280px;
+            }
+
+            #espacios-videocolaboracion .section-9-coverage img {
+                max-height: 280px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sidebar-toggle {
+                top: 0.875rem;
+                padding: 0.7rem 0.8rem;
+            }
+
+            .sidebar-toggle-text {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+
+            .sidebar-navigation {
+                padding: 1.375rem 1.125rem;
+            }
+
+            .partnership-logos img {
+                max-height: 56px;
+            }
+
+            .details-grid,
+            .details-grid.balanced-3,
+            .details-grid.balanced-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .brands-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .flowchart {
+                font-size: 0.9rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="sidebar-toggle" type="button" aria-controls="sidebar-navigation" aria-expanded="false" aria-label="Abrir índice de la presentación">
+        <span class="sidebar-toggle-icon" aria-hidden="true"></span>
+        <span class="sidebar-toggle-text">Índice</span>
+    </button>
+
+    <aside id="sidebar-navigation" class="sidebar-navigation" aria-label="Índice de la presentación" aria-hidden="true" inert>
+        <div class="sidebar-header">
+            <span class="sidebar-title">Índice de Servicios</span>
+            <button class="sidebar-close" type="button" aria-label="Cerrar índice">×</button>
+        </div>
+        <nav aria-label="Navegación por secciones">
+            <ul class="sidebar-nav">
+                <li><a href="#quienes-somos">1. ¿Quiénes Somos?</a></li>
+                <li><a href="#propuesta-valor">2. Nuestra Propuesta de Valor</a></li>
+                <li><a href="#especializaciones">3. Especializaciones Técnicas</a></li>
+                <li><a href="#areas-soluciones">4. Áreas de Soluciones AV</a></li>
+                <li><a href="#plataformas">5. Soluciones por Plataforma</a></li>
+                <li><a href="#industrias">6. Soluciones por Industria</a></li>
+                <li><a href="#escenarios">7. Soluciones por Escenario</a></li>
+                <li><a href="#marcas-aliadas">8. Marcas Aliadas Globales</a></li>
+                <li><a href="#espacios-videocolaboracion">9. Espacios e Infraestructura</a></li>
+                <li><a href="#pantallas-interactivas">10. Pantallas Interactivas</a></li>
+                <li><a href="#audio-integrado">11. Audio y Servicios Integrados</a></li>
+                <li><a href="#servicios-ti">12. Servicios Profesionales TI</a></li>
+                <li><a href="#cobertura">13. Cobertura y Respaldo</a></li>
+                <li><a href="#arquitectura">14. Arquitectura</a></li>
+                <li><a href="#catalogo">15. Catálogo de Soluciones</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <header>
+        <video class="header-video-bg" preload="metadata" muted playsinline autoplay loop poster="https://www.yealink.com/website-service/download/Snipaste_2026-06-16_19-59-53.webp">
+            <source src="https://www.yealink.com/website-service/download/Video-Conferencing-video.mp4" type="video/mp4">
+        </video>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <div class="partnership-logos">
+                <img src="0.png" alt="Logo DataServicios" onerror="this.onerror=null; this.src='https://placehold.co/400x120/003a70/ffffff?text=DataServicios';">
+            </div>
+            <div class="header-badge">Especialistas en Videocolaboración & Automatización</div>
+            <h1>Presentación de Servicios Tecnológicos</h1>
+            <p>Transformamos espacios corporativos en entornos de <strong>Colaboración Inteligente</strong>, integrando tecnología avanzada, soporte presencial y cobertura en todo el territorio colombiano.</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. ¿Quiénes Somos? -->
+        <section id="quienes-somos" class="card hidden">
+            <h2>1. ¿Quiénes Somos?</h2>
+            <p class="lead">
+                Somos un engranaje perfecto entre personas, talento técnico, marcas globales y compromiso de servicio en todo el territorio colombiano. Diseñamos, integramos y desplegamos soluciones tecnológicas avanzadas.
+            </p>
+            <p class="section-intro">
+                <strong>Dataservicios</strong> se esfuerza por ofrecer un espacio de trabajo eficiente y sencillo para todos, proporcionando una gama completa de dispositivos —incluidos auriculares, altavoces, cámaras, barras de videoconferencia y pantallas interactivas— que se pueden utilizar en oficinas abiertas, en casa, salas privadas y en movimiento, permitiendo que todo tipo de profesionales trabajen como aman.
+            </p>
+
+            <div class="details-grid balanced-2">
+                <div class="detail-item">
+                    <h4>Pasión y Excelencia</h4>
+                    <p>Amamos lo que hacemos. Generar valor sostenible a nuestros clientes y ofrecer una integración AV/TI perfecta es nuestro mayor propósito corporativo.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Respaldo Comprobado</h4>
+                    <p>Cientos de clientes y entidades corporativas certifican nuestro compromiso, oportunidad y alta calidad técnica a lo largo de más de 10 años de experiencia en el mercado.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Cobertura Nacional</h4>
+                    <p>Llegamos con soporte presencial y despliegue técnico especializado a cualquier ciudad o municipio del territorio nacional colombiano.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Nuestro Equipo</h4>
+                    <p>Contamos con talento ágil, responsable, certificado y honesto para brindar un acompañamiento integral de principio a fin en cada proyecto.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Nuestra Propuesta de Valor -->
+        <section id="propuesta-valor" class="card hidden">
+            <h2>2. Nuestra Propuesta de Valor</h2>
+            <p class="section-intro">
+                Crea el mejor espacio de trabajo a tu gusto con la oferta tecnológica integral de Dataservicios. Nos enfocamos en eliminar la complejidad técnica para entregar proyectos llave en mano con máxima rentabilidad y usabilidad.
+            </p>
+            <ul class="specs-list">
+                <li><strong>Arquitectura Punta a Punta:</strong> Cobertura de todas las dimensiones digitales de su empresa, asegurando ecosistemas de alta productividad sin fisuras entre hardware y software.</li>
+                <li><strong>Experiencias de Video Intuitivas:</strong> Facilitamos una comunicación cómoda entre empleados, clientes y socios en diversos escenarios, desarrollando relaciones confiables a través de video y audio cristalino.</li>
+                <li><strong>Integración AV/TI Transparente:</strong> Convergencia ágil entre los sistemas audiovisuales tradicionales y la infraestructura de red corporativa.</li>
+                <li><strong>Garantías Directas y Acompañamiento:</strong> Respaldo directo con fabricantes líderes globales y modelos de soporte continuo 5x8 y 24x7.</li>
+            </ul>
+        </section>
+
+        <!-- 3. Especializaciones Técnicas y Servicios -->
+        <section id="especializaciones" class="card hidden">
+            <h2>3. Especializaciones Técnicas</h2>
+            <p class="section-intro">
+                Ofrecemos arquitectura punta a punta para cubrir todas las necesidades tecnológicas de los espacios de trabajo modernos:
+            </p>
+            <figure class="media-figure hero">
+                <img src="https://www.yealink.com/website-service/attachment/solution/other/20250721/202507210754264772dad.webp" alt="Especializaciones AV">
+            </figure>
+            <div class="details-grid balanced-2">
+                <div class="detail-item">
+                    <h4>Diseño e Ingeniería AV</h4>
+                    <p>Planificación de espacios, cálculo de acústica, ángulos de visión, diagramas de flujo de señal y especificaciones de componentes técnicos a la medida.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Despliegue e Instalación Física</h4>
+                    <p>Instalación estructurada, canalizaciones ocultas, montaje en soportes móviles o murales de alta resistencia y peinado profesional de cableado.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Configuración Lógica & IA</h4>
+                    <p>Puesta en marcha de software de videoconferencia, enrutamiento Dante, calibración de DSP de audio y parametrización de algoritmos de inteligencia artificial (Auto-Framing, Speaker Tracking, Video Fence).</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Capacitación y Adopción</h4>
+                    <p>Entrenamiento técnico al equipo de TI y jornadas de adopción a usuarios finales para maximizar el retorno de la inversión desde el primer día.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Áreas de Soluciones Audiovisuales -->
+        <section id="areas-soluciones" class="card hidden">
+            <h2>4. Áreas de Soluciones Audiovisuales</h2>
+            <p class="section-intro">
+                Ofrecemos un portafolio diversificado y especializado para transformar cualquier ambiente en una sala colaborativa de alto desempeño:
+            </p>
+            <figure class="media-figure hero">
+                <img src="https://www.yealink.com/website-service/attachment/solution/image/20241202/20241202034801856002f.jpg" alt="MeetingBar A40">
+            </figure>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <h4>Videocolaboración (BYOM & MTR)</h4>
+                    <p>Barras inteligentes con IA, cámaras PTZ con seguimiento óptico del orador (<em>Speaker Tracking</em>), arreglos de micrófonos en techo/mesa y barras nativas para Teams Rooms o Zoom Rooms.</p>
+                    <ul class="nested-list">
+                        <li>Auto-Framing & Video Fence</li>
+                        <li>Conexión Plug & Play de un solo cable</li>
+                    </ul>
+                </div>
+
+                <div class="detail-item">
+                    <h4>Pantallas Interactivas (EDLA)</h4>
+                    <p>Displays interactivos de gran formato (65", 75", 86", 98") con certificación Google EDLA, Android 16 nativo, módulos OPS Windows 11 Pro, pizarra digital y multitoque de 64 puntos.</p>
+                    <ul class="nested-list">
+                        <li>Integración Google Workspace nativa</li>
+                        <li>Transmisión táctil bidireccional</li>
+                    </ul>
+                </div>
+
+                <div class="detail-item">
+                    <h4>Automatización & Control</h4>
+                    <p>Control centralizado de iluminación, persianas, pantallas motorizadas, conmutación de señales HDMI/IP y botoneras touch de control de un solo toque para iniciar reuniones.</p>
+                    <ul class="nested-list">
+                        <li>Sistemas Crestron / Kramer / Automate</li>
+                        <li>Escenarios de reunión preprogramados</li>
+                    </ul>
+                </div>
+
+                <div class="detail-item">
+                    <h4>Sonido Profesional & Acústica</h4>
+                    <p>Procesadores DSP de audio, altavoces de techo Dante, cancelación de ruido activa por IA (<em>Noise Proof</em>), arreglos de superficie inalámbricos inductivos y ecualización de sala.</p>
+                    <ul class="nested-list">
+                        <li>Claridad de voz en 360°</li>
+                        <li>Eliminación de eco acústico (AEC)</li>
+                    </ul>
+                </div>
+
+                <div class="detail-item">
+                    <h4>Colaboración Inalámbrica (Cast)</h4>
+                    <p>Botones físicos de transmisión USB/HDMI (<em>Cast Buttons</em>) que permiten compartir pantalla sin instalar software, aislados de la red corporativa y con soporte quad-split.</p>
+                    <ul class="nested-list">
+                        <li>Cero instalación de drivers</li>
+                        <li>Encriptación AES-128 / WPA3</li>
+                    </ul>
+                </div>
+
+                <div class="detail-item">
+                    <h4>Servicios Profesionales de TI</h4>
+                    <p>Instalación física estructurada, canalizaciones ocultas, montaje en soportes móviles/murales, configuración de software, pruebas de campo y capacitaciones a usuarios.</p>
+                    <ul class="nested-list">
+                        <li>Garantías directo con fabricante</li>
+                        <li>Soporte técnico 5x8 / 24x7</li>
+                    </ul>
+                </div>
+            </div>
+		
+            <figure class="media-figure hero" style="margin-top: 1.5rem;">
+                <img src="https://www.yealink.com/website-service/attachment/solution/other/20250317/202503170823153864506.webp" alt="Áreas de Soluciones">
+            </figure>
+        </section>
+	
+
+        <!-- 5. Soluciones por Plataforma -->
+        <section id="plataformas" class="card hidden">
+            <h2>5. Soluciones por Plataforma de Videoconferencia</h2>
+            <p class="section-intro">
+                Integramos hardware certificado que se adapta de forma nativa a la plataforma estándar de su organización:
+            </p>
+            <figure class="media-figure hero">
+                <img src="https://www.yealink.com/website-service/attachment/solution/other/20250604/202506040650151157ec4.webp" alt="Plataformas Compatibles">
+            </figure>
+            <div class="details-grid balanced-3">
+                <div class="detail-item">
+                    <h4 class="accent-ms">Soluciones Microsoft</h4>
+                    <p><strong>Microsoft Teams Rooms (MTR) & Teams Meetings:</strong> Experiencia nativa con consolas táctiles de un solo toque para unirse (One-Touch Join), integración con calendario Outlook/Teams y administración remota desde el Teams Admin Center.</p>
+                </div>
+                <div class="detail-item">
+                    <h4 class="accent-zoom">Soluciones Zoom</h4>
+                    <p><strong>Zoom Rooms & Zoom Meetings:</strong> Salas de conferencias nativas con compartimiento inalámbrico instantáneo, soporte de doble pantalla, controles táctiles intuitivos y máxima fidelidad de video en la nube.</p>
+                </div>
+                <div class="detail-item">
+                    <h4 class="accent-byom">Soluciones BYOM (Bring Your Own Meeting)</h4>
+                    <p>Flexibilidad total que permite a los usuarios conectar su propio portátil mediante un único cable USB-C o botón Cast y tomar el control del video 4K y audio de la sala para cualquier plataforma (Google Meet, Webex, Cisco, etc.).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Soluciones por Industria -->
+        <section id="industrias" class="card hidden">
+            <h2>6. Soluciones por Industria</h2>
+            <p class="section-intro">
+                Desarrollamos soluciones personalizadas que responden a los desafíos particulares de cada sector económico:
+            </p>
+            <div class="details-grid balanced-2">
+                <div class="detail-item">
+                    <h4>Educación</h4>
+                    <p>Aulas híbridas, pantallas interactivas EDLA de gran formato con pizarra digital, grabación y transmisión de clases, e interacción remota entre estudiantes y docentes.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Finanzas y Banca</h4>
+                    <p>Salas de juntas de alta seguridad, transmisión inalámbrica encriptada (AES-128 / WPA3), sistemas de directorio con alta disponibilidad y confidencialidad de datos.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Cuidado de la Salud (Healthcare)</h4>
+                    <p>Telemedicina, aulas de discusión de casos médicos en alta definición, cámaras de precisión y soluciones integradas para ambientes hospitalarios y clínicos.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Fabricación e Industria</h4>
+                    <p>Comunicación en tiempo real entre plantas de producción y oficinas administrativas, monitoreo en salas de control y equipos de alta durabilidad operacional.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Soluciones por Escenarios y Tamaño de Sala -->
+        <section id="escenarios" class="card hidden">
+            <h2>7. Soluciones por Escenarios y Tamaño de Sala</h2>
+            <p class="section-intro">
+                Desde pequeños espacios de enfoque hasta grandes auditorios corporativos, Dataservicios dimensiona y equipa el lugar adecuado para la forma en que se reúnen sus equipos:
+            </p>
+
+            <div class="table-responsive">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Escenario / Sala</th>
+                            <th>Capacidad</th>
+                            <th>Tipo de Solución</th>
+                            <th>Componentes Principales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Espacios de Enfoque (Huddle Rooms)</strong></td>
+                            <td>1 - 4 personas</td>
+                            <td>Multifunción / USB</td>
+                            <td>Barras compactas All-in-One con IA, pantallas de 55" a 65", micrófonos integrados.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Salas Medianas</strong></td>
+                            <td>5 - 10 personas</td>
+                            <td>Multifunción / MTR / BYOM</td>
+                            <td>Barras de video 4K con auto-framing, pantallas interactivas 75"-86", botones Cast.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Salas de Conferencias / Juntas</strong></td>
+                            <td>11 - 20 personas</td>
+                            <td>Modular de Alto Rendimiento</td>
+                            <td>Cámaras PTZ con tracking óptico, arreglos de micrófonos inductivos de mesa/techo, DSP.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Auditorios y Directorio</strong></td>
+                            <td>&gt; 20 personas</td>
+                            <td>Diseño Personalizado / AV-over-IP</td>
+                            <td>Matrices de control centralizado, audio Dante, videowalls / pantallas 98", microfonía múltiple.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="details-grid balanced-3" style="margin-top: 1.5rem;">
+                <div class="detail-item">
+                    <h4>Soluciones Multifunción</h4>
+                    <p>Barras de vídeo para salas pequeñas, medianas y grandes. Todo lo que necesitas para una videollamada perfecta con software integrado en un chasis elegante.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Soluciones Modulares</h4>
+                    <p>Sistemas adaptables que separan la cámara, los altavoces y los micrófonos para cubrir espacios de geometrías complejas o mesas extensas.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Soluciones USB</h4>
+                    <p>Dispositivos universales de fácil conexión Plug & Play para convertir cualquier monitor tradicional en una estación de colaboración activa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Marcas Aliadas Globales -->
+        <section id="marcas-aliadas" class="card hidden">
+            <h2>8. Marcas Aliadas Globales</h2>
+            <p class="section-intro">
+                Trabajamos de la mano con los fabricantes líderes de la industria tecnológica a nivel mundial para garantizar innovación constante, homologación de productos y garantías directas de fábrica:
+            </p>
+
+            <div class="brands-grid">
+                <div class="brand-card">
+                    <span>Yealink</span>
+                    <small>Líder en Videocolaboración & UC</small>
+                </div>
+                <div class="brand-card">
+                    <span>ViewSonic</span>
+                    <small>Visualización & Displays EDLA</small>
+                </div>
+                <div class="brand-card">
+                    <span>Poly (HP)</span>
+                    <small>Audio Profesional & Video Smart</small>
+                </div>
+                <div class="brand-card">
+                    <span>Logitech</span>
+                    <small>Ecosistemas de Video Conferencia</small>
+                </div>
+                <div class="brand-card">
+                    <span>LG</span>
+                    <small>Cartelería Digital & Commercial Displays</small>
+                </div>
+                <div class="brand-card">
+                    <span>Lenovo</span>
+                    <small>Cómputo Dedicado MTR & Compute Units</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Espacios e Infraestructura Tecnológica Destacada -->
+        <section id="espacios-videocolaboracion" class="card yealink hidden">
+            <span class="tag" style="background: var(--accent-yealink);">Espacios que Comunican, Colaboran y Rinden</span>
+            <h2>9. Tecnología de Videocolaboración de Alto Rendimiento</h2>
+            <p class="section-intro">
+                Cada reunión que falla es tiempo desperdiciado. Instalamos los espacios donde los equipos trabajan bien y los clientes quedan impresionados: salas inteligentes, performance de alto rendimiento y cartelería digital — diseñados, implementados y soportados.
+            </p>
+
+            <div class="section-9-layout">
+                
+                <div class="content-column">
+                    <h3>Barras Inteligentes y Sistemas de Audio con IA</h3>
+                    <p class="section-intro">
+                        Ofrece tu mejor imagen y el sonido más claro en cualquier espacio de reunión. Desde salas pequeñas hasta grandes salas de conferencias, nuestras soluciones ayudan a que todos vean y escuchen con total claridad.
+                    </p>
+                    <ul class="specs-list">
+                        <li><strong>Óptica con IA Avanzada:</strong> Cámaras de ultra alta resolución (hasta 50MP) con doble lente, seguimiento del orador (<em>Speaker Tracking</em>), encuadre de grupo (<em>Auto Framing</em>) y galerías de rostros inteligentes (<em>IntelliFocus</em>).</li>
+                        <li><strong>Cancelación de Ruido Inteligente:</strong> Tecnología <em>Noise Proof</em> que aísla ruidos de fondo (aires acondicionados, clicks, teclados) y garantiza inteligibilidad de voz en 360°.</li>
+                        <li><strong>Micrófonos Inalámbricos Inductivos:</strong> Cobertura extendida mediante kits de micrófonos inalámbricos (como Yealink VCM36-W) con estaciones de carga inductiva para mesas limpias.</li>
+                        <li><strong>Compatibilidad Multiplataforma:</strong> Nativas para Teams Rooms y Zoom Rooms con modo de conmutación BYOD instantáneo.</li>
+                    </ul>
+                </div>
+                
+                <div class="section-9-featured-media">
+                    <figure class="media-figure">
+                        <video autoplay loop muted playsinline>
+                            <source src="https://www.yealink.com/website-service/download/a50-cover3sheship.mp4" type="video/mp4">
+                        </video>
+                    </figure>
+                </div>
+
+                <div class="section-9-secondary-media">
+                    <div class="section-9-explore interactive-container">
+                        <p>Explora la estructura técnica de una solución de videocolaboración inteligente:</p>
+                        <div class="hotspot-wrapper">
+                            <img src="https://www.yealink.com/website-service/attachment/product/image/20240627/20240627053009982101b.png" alt="Estructura interna Yealink A50">
+    
+                            <div class="hotspot" style="top: 45%; left: 20%;" data-info="Sistema de Óptica Avanzada 50MP: Combinación de lentes gran angular y teleobjetivo con IA.">+</div>
+                            <div class="hotspot" style="top: 45%; left: 80%;" data-info="Obturador de Privacidad Automático: Cierre mecánico inteligente al finalizar reuniones.">+</div>
+                            <div class="hotspot" style="top: 45%; left: 50%;" data-info="Matriz de Micrófonos MEMS: Captación direccional en 360° con supresión de eco.">+</div>
+                        </div>
+                    </div>
+    
+                    <figure class="media-figure hero section-9-coverage">
+                        <img src="2.png" alt="Rango de cobertura inteligente" onerror="this.onerror=null; this.src='https://placehold.co/800x450/f4f6f8/555555?text=Rango+de+Cobertura+Audiovisual';">
+                        <figcaption class="img-caption">Cobertura cenital y captación inteligente en entornos corporativos.</figcaption>
+                    </figure>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 10. Pantallas Interactivas Viewsonic -->
+        <section id="pantallas-interactivas" class="card viewsonic hidden">
+            <span class="tag" style="background: var(--accent-viewsonic);">Visualización Interactiva & Cast</span>
+            <h2>10. Pantallas Interactivas EDLA y Colaboración Inalámbrica</h2>
+            <div class="product-grid reverse">
+                <div class="content-column">
+                    <h3>Pantallas Interactivas de Gran Formato (65" a 98")</h3>
+                    <p class="section-intro">
+                        Potencia la ideación y el trabajo colaborativo con displays interactivos que combinan pizarra digital de baja latencia y acceso directo al ecosistema empresarial.
+                    </p>
+                    <ul class="specs-list">
+                        <li><strong>Certificación Google EDLA & Android 16:</strong> Integración nativa con Google Workspace (Docs, Sheets, Slides, Drive) con la máxima seguridad cibernética corporativa.</li>
+                        <li><strong>Multitoque de 64 Puntos y Palm Rejection:</strong> Reconocimiento ultra-sensible en 4 niveles (lápiz fino, grueso, dedo y palma) para escritura natural.</li>
+                        <li><strong>USB-C Dual con Carga de 65W:</strong> Transmisión de audio, video, red y toque bidireccional mediante un solo cable mientras se alimenta la laptop.</li>
+                        <li><strong>Transmisión Inalámbrica Cast (Split-Screen):</strong> Comparte pantalla desde portátiles o móviles mediante botones físicos HDMI/USB o software, permitiendo hasta 4 dispositivos en pantalla dividida simultánea.</li>
+                    </ul>
+
+                    <div class="usage-section">
+                        <h3>¿Cómo simplifica las reuniones el Cast Button?</h3>
+                        <p>El expositor conecta el botón Cast en el puerto de su ordenador portátil. Sin instalar controladores ni solicitar permisos de administrador de red, presiona el botón físico y transmite instantáneamente video 4K y audio con cifrado AES-128 / WPA3 al display principal de la sala.</p>
+                    </div>
+                </div>
+                <div class="media-column media-gallery">
+                    <figure class="media-figure">
+                        <img src="https://www.viewsonic.com/media/catalog/product/cache/b1231e477ffebecb36748a51c37e27d3/2/5/25vwb-edu1219-prd-ifp9851_front_left_2000x2000_1.jpg" alt="Pantalla Interactiva ViewBoard EDLA">
+                        <figcaption class="img-caption">Displays interactivos corporativos con certificación Google EDLA y Android 16 nativo.</figcaption>
+                    </figure>
+
+                    <figure class="media-figure">
+                        <img src="https://www.viewsonic.com/vsAssetFile/es/img/slides/_viewboard_cast_button_and_cradle/VB-WPS-003/ViewBoard%20Cast%20Button%20VB-WPS-003_02_pc.jpg" alt="Botón Cast de Transmisión Inalámbrica">
+                        <figcaption class="img-caption">Transmisores Cast Button para compartimiento inalámbrico seguro sin instalación de drivers.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Audio y Servicios Integrados -->
+        <section id="audio-integrado" class="card yealink hidden">
+            <span class="tag" style="background: var(--accent-yealink);">Audio Profesional Integrado</span>
+            <h2>10. Audio y Servicios Integrados</h2>
+            <div class="audio-layout">
+                <div class="content-column">
+                    <p class="section-intro">
+                        <strong>En la era moderna del trabajo híbrido</strong>, una mala calidad de audio puede arruinar incluso la mejor configuración de videoconferencia. Ya sea en una pequeña sala de reuniones o en una gran sala de juntas, escuchar y ser escuchado con claridad es fundamental para una comunicación eficaz. En esta guía, exploraremos las mejores soluciones de audio para salas de conferencias de todos los tamaños y cómo la tecnología de nivel profesional de Yealink ofrece experiencias de sonido consistentes y de alta calidad en todos los espacios de reuniones.
+                    </p>
+
+                    <h3>Por qué el audio importa más que nunca</h3>
+                    <p class="section-intro">
+                        Si bien las videoconferencias reciben mucha atención, el audio es lo que realmente impulsa la comunicación. Un volumen inconsistente, el ruido de fondo o la pérdida de sonido pueden causar frustración y problemas de comunicación. Por eso, elegir el equipo de audio adecuado para salas de conferencias es crucial.
+                    </p>
+
+                    <h3>Requisitos clave para el audio en salas modernas:</h3>
+                    <ul class="specs-list">
+                        <li>Cobertura completa de la sala en cualquier dirección.</li>
+                        <li>Cancelación de eco y supresión de ruido inteligente.</li>
+                        <li>Escalabilidad de micrófonos según el tamaño de la sala.</li>
+                        <li>Fácil integración con plataformas como Microsoft Teams y Zoom.</li>
+                        <li>Diseño de hardware estético, limpio y discreto en la mesa o techo.</li>
+                    </ul>
+
+                    <h3>Funciones de audio inteligentes para reuniones fluidas</h3>
+                    <p>Los dispositivos de audio profesionales vienen con capacidades impulsadas por IA para mejorar su experiencia:</p>
+                    <ul class="specs-list">
+                        <li><strong>Matrices de micrófonos con formación de haces:</strong> Se centran en los oradores activos mientras suprimen el ruido ambiental.</li>
+                        <li><strong>Audio dúplex completo:</strong> Admite conversaciones naturales e ininterrumpidas sin cortes de audio.</li>
+                        <li><strong>Cancelación de ruido AI:</strong> Filtra el ruido del teclado, del sistema de climatización y otros ruidos de fondo.</li>
+                        <li><strong>Diseño de cobertura de salas:</strong> Los micrófonos y altavoces de techo crean un campo sonoro invisible pero potente.</li>
+                    </ul>
+                </div>
+
+                <div class="audio-media-grid">
+                    <figure class="media-figure">
+                        <video id="template-video" src="https://www.yealink.com/website-service/attachment/product/video/20241121/20241121065511151d706.mp4" autoplay loop muted playsinline></video>
+                    </figure>
+
+                    <figure class="media-figure">
+                        <img src="https://www.yealink.com/website-service/attachment/product/other/20250324/2025032407474433241e2.webp" alt="Esquema de distribución acústica inteligente en salas de juntas.">
+                        <figcaption class="img-caption">Esquema de distribución acústica inteligente en salas de juntas para una cobertura perfecta.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. Servicios Profesionales de TI -->
+        <section id="servicios-ti" class="card hidden">
+            <h2>11. Servicios Profesionales de TI</h2>
+            <p class="section-intro">
+                Nuestro compromiso no termina con el suministro de los dispositivos. Brindamos un ciclo de vida completo de servicios profesionales de TI para garantizar la continuidad operativa de su empresa:
+            </p>
+            <div class="details-grid balanced-2">
+                <div class="detail-item">
+                    <h4>Instalación Física Estructurada</h4>
+                    <p>Montajes murales y en soportes móviles de alta resistencia, canalizaciones estéticas ocultas, organización interna de gabinetes y certificación de puntos de red.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Configuración y Pruebas de Campo</h4>
+                    <p>Actualización de firmware de fábrica, vinculación con cuentas de correo corporativas de sala, pruebas rigurosas de audio y video antes de la entrega final.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Capacitación y Documentación</h4>
+                    <p>Jornadas de transferencia de conocimiento para el equipo de sistemas/TI y manuales de usuario simplificados para la operación diaria de la sala.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Soporte Técnico Especializado</h4>
+                    <p>Esquemas de soporte presencial y remoto en modalidades 5x8 y 24x7 con tiempos de respuesta SLA optimizados para incidencias críticas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Cobertura Nacional y Respaldo -->
+        <section id="cobertura" class="card hidden">
+            <h2>12. Cobertura Nacional y Respaldo Comprobado</h2>
+            <p class="section-intro">
+                Dataservicios cuenta con capacidad logística e ingenieril para desplegar y mantener proyectos tecnológicos en las principales capitales y municipios de Colombia:
+            </p>
+
+            <div class="details-grid balanced-3">
+                <div class="detail-item">
+                    <h4>Despliegue Nacional</h4>
+                    <p>Presencia con cuadrillas de ingenieros y técnicos certificados para atender proyectos en Bogotá, Medellín, Cali, Barranquilla, Bucaramanga, Eje Cafetero y municipios del territorio colombiano.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Garantías Directas de Fábrica</h4>
+                    <p>Gestionamos de manera transparente y directa las garantías con los fabricantes (hasta 36 meses en displays, 24 meses en barras y audio, 12 meses en accesorios).</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Continuidad del Servicio</h4>
+                    <p>Planes de mantenimiento preventivo y correctivo con disponibilidad de repuestos originales y stock local de respaldo.</p>
+                </div>
+            </div>
+
+            <div class="exclusions-box">
+                <h3>Respaldo y Cumplimiento Normativo</h3>
+                <p>Todos nuestros procedimientos de instalación y configuración cumplen estrictamente con los estándares internacionales AVIXA, normas de cableado estructurado ANSI/TIA y las políticas de seguridad de la información corporativa de nuestros clientes.</p>
+            </div>
+        </section>
+
+        <!-- 14. Arquitectura de Solución Unificada -->
+        <section id="arquitectura" class="architecture-banner hidden">
+            <h2>13. Arquitectura Tecnológica del Sistema Colaborativo</h2>
+            <p>Representación del flujo unificado de señales e integración tecnológica desplegado por Dataservicios:</p>
+            <div class="flowchart">
+                Dispositivos de Usuario (BYOD / Laptops) <br>
+                ⬇ (Cast Buttons Inalámbricos / USB-C Unificado) <br>
+                Procesador Central & Displays Interactivos (Google EDLA / MTR / Zoom) <br>
+                ⬇ (Conexión Digital Encriptada & Audio Dante / DSP) <br>
+                Sistemas de Captura de Video 4K con IA + Arreglos Acústicos con Cancelación de Ruido <br>
+                ⬇ <br>
+                Ecosistema de Colaboración Inteligente en Toda Colombia
+            </div>
+        </section>
+
+        <!-- 15. Catálogo de Soluciones -->
+        <section id="catalogo" class="card hidden">
+            <h2>14. Catálogo de Soluciones</h2>
+            <p class="section-intro">
+                Aquí podrás consultar y descargar nuestro portafolio de soluciones integradas y especificaciones técnicas detalladas en formato PDF. <em>(A medida que vayamos agregando documentos, aparecerán en este espacio para su fácil acceso)</em>.
+            </p>
+            <div class="catalog-grid">
+                <div class="catalog-item">
+                    <div class="catalog-badge secondary">PDF</div>
+                    <div>
+                        <h4>Catálogo General Corporativo</h4>
+                        <p>Próximamente disponible para descarga</p>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-badge primary">PDF</div>
+                    <div>
+                        <h4>Fichas Técnicas Equipos</h4>
+                        <p>Próximamente disponible para descarga</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.hidden').forEach((el) => {
+            observer.observe(el);
+        });
+
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebarNavigation = document.querySelector('.sidebar-navigation');
+        const sidebarClose = document.querySelector('.sidebar-close');
+        const sidebarBackdrop = document.querySelector('.sidebar-backdrop');
+        const sidebarLinks = [...document.querySelectorAll('.sidebar-nav a')];
+        const navigationSections = sidebarLinks
+            .map((link) => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+
+        const openSidebar = () => {
+            sidebarNavigation.classList.add('is-open');
+            sidebarBackdrop.classList.add('is-visible');
+            document.body.classList.add('sidebar-open');
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+            sidebarNavigation.setAttribute('aria-hidden', 'false');
+            sidebarNavigation.inert = false;
+            sidebarClose.focus();
+        };
+
+        const closeSidebar = (restoreFocus = true) => {
+            sidebarNavigation.classList.remove('is-open');
+            sidebarBackdrop.classList.remove('is-visible');
+            document.body.classList.remove('sidebar-open');
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+            sidebarNavigation.setAttribute('aria-hidden', 'true');
+            sidebarNavigation.inert = true;
+
+            if (restoreFocus) {
+                sidebarToggle.focus();
+            }
+        };
+
+        sidebarToggle.addEventListener('click', openSidebar);
+        sidebarClose.addEventListener('click', () => closeSidebar());
+        sidebarBackdrop.addEventListener('click', () => closeSidebar());
+
+        sidebarLinks.forEach((link) => {
+            link.addEventListener('click', () => closeSidebar(false));
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && sidebarNavigation.classList.contains('is-open')) {
+                closeSidebar();
+            }
+        });
+
+        const navigationObserver = new IntersectionObserver((entries) => {
+            const visibleEntry = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((firstEntry, secondEntry) => secondEntry.intersectionRatio - firstEntry.intersectionRatio)[0];
+
+            if (!visibleEntry) return;
+
+            sidebarLinks.forEach((link) => {
+                const isActive = link.getAttribute('href') === `#${visibleEntry.target.id}`;
+                link.classList.toggle('is-active', isActive);
+
+                if (isActive) {
+                    link.setAttribute('aria-current', 'location');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+
+        navigationSections.forEach((section) => navigationObserver.observe(section));
+    </script>
+</body>
+</html>
